@@ -4,7 +4,7 @@ A dependency-free Android library for querying under-display fingerprint placeme
 
 This library queries geometry only. It does not authenticate, access enrolled fingerprints, request root, change hidden-API policy, move the system fingerprint icon or modify another application's UI.
 
-**Status: 0.1.0, experimental.** Available mechanisms depend on the device, firmware and caller privileges. A successful source-code test is not a stock-device validation. No universal coverage claim is made.
+**Status: 0.2.0, experimental.** Available mechanisms depend on the device, firmware and caller privileges. A successful source-code test is not a stock-device validation. No universal coverage claim is made.
 
 中文说明: 这是读取设备实际指纹位置的独立库，支持来源诊断、旋转和分辨率换算。已检查两台本地设备，并在免费云真机上提交五个型号的测试，逐台记录可用、不可用及启动阻塞结果。122 条 ROM 配置样本属于自动回归，不能视为 122 台真机验证。普通应用可能无法读取系统或厂商接口，失败时明确返回不可用，不猜测位置。
 
@@ -35,7 +35,7 @@ Build on Linux with JDK 21 and Android SDK 37.2/build-tools 37.0.0. JDK 21 is ne
 After local publication, add `mavenLocal()` to the consuming build's repositories:
 
 ```groovy
-implementation 'io.github.eritpchy.fingerprintlocation:fingerprint-location-android:0.1.0'
+implementation 'io.github.eritpchy.fingerprintlocation:fingerprint-location-android:0.2.0'
 ```
 
 This coordinate is for the local publication above. It is not a claim that an artifact is available on Maven Central. CI provides the AAR, core JAR and diagnostic JAR as build artifacts. An AAR used directly must be accompanied by the core JAR.
@@ -80,6 +80,16 @@ FingerprintLocation.Options options = new FingerprintLocation.Options.Builder()
 ```
 
 Only requested property names are read. Root is never invoked by the library. Do not forward arbitrary shell commands through a property bridge.
+
+An already-authorized host can also supply a fresh SystemUI service report:
+
+```java
+FingerprintLocation.Options options = new FingerprintLocation.Options.Builder()
+        .systemUiDump(() -> existingSystemUiBridge.readFreshReport())
+        .build();
+```
+
+This bridge is disabled by default. The library does not execute commands, obtain shell access or grant permissions. The caller must obtain a fresh, trusted report for each query; a matching display configuration cannot establish that a saved report is current. The parser accepts the AOSP `AuthController`/`UdfpsController` contract on display 0, requires registration, binds the sensor ID, validates display dimensions/rotation/scale, and rejects empty, null, malformed, duplicate and example-default geometry. `AuthController.udfpsBounds` is already resolution-scaled current-natural geometry, so it is rotated once and never scaled twice. Unrecognized OEM formats remain unavailable. Raw reports can contain unrelated private state; the library does not log or retain them.
 
 `Options.Builder.provider(...)` accepts a caller-owned read-only provider, such as a system-server integration that already has access to a trusted SystemUI sensor window. The caller must validate the owner, display, coordinate space and lifecycle of that observation. A window title or an entire animation surface is insufficient proof of sensor geometry.
 
@@ -127,12 +137,21 @@ Build the ordinary-app diagnostic with `./gradlew :diagnostic:assembleDebug :dia
 
 Install the APK on an authorized device or upload it to a manufacturer's test console. Test the default query, landscape, return to portrait, opt-in IFAA, and Close. A platform can ignore orientation requests, especially on large screens; record the actual display dimensions and rotation rather than marking an ignored request passed. Copy JSON from the app or, where ADB/debuggable-app access is provided, export `adb shell run-as io.github.eritpchy.fingerprintlocation.diagnostic cat files/latest.json`.
 
+For an explicit instrumentation run, build `:diagnostic:assembleDebugAndroidTest` on Linux and install both diagnostic APKs. Run:
+
+```sh
+adb shell am instrument -w -e class io.github.eritpchy.fingerprintlocation.diagnostic.DiagnosticE2eTest \
+  io.github.eritpchy.fingerprintlocation.diagnostic.test/androidx.test.runner.AndroidJUnitRunner
+```
+
+The test launches the Activity from its own instrumentation process, exercises the controls, and separately supplies a report read through the harness's `UiAutomation` shell. That step is labeled `app-with-instrumentation-shell-report`; it does not demonstrate ordinary-app access to SystemUI. JSON and original screenshots are saved under the app's external `files/e2e/` directory. No authentication, root invocation, permission grant or hidden-API exemption is used. Upload the app APK and test APK as an instrumentation test for cloud execution. This is a candidate route around a Robo stub launch restriction, not a claim that Xiaomi has passed.
+
 Record model, firmware, APK SHA-256, execution context, actual rotation, complete JSON, original screenshots and exit state. Compare successful geometry with an independent system sensor/icon report. Installation success, a provider returning unavailable, and a library-drawn rectangle are not a location-accuracy pass. See [E2E evidence and cloud access](docs/e2e.md).
 
 ## Tests and license
 
 The test corpus contains 122 public LineageOS device/platform location definitions. Parameterized tests exercise display selection, four rotations and three scales, including side-sensor rejection. Additional tests cover malformed values, access denial, source disagreement, unbound sensor IDs, AOSP placeholder handling and fresh property reads. Android provider fixtures run on Robolectric SDK 31 and 36 and exercise API 31 fields, per-display lists, rectangular sensors, Samsung logical bounds and reflective access denial. These are configuration/geometry regressions, not 122 physical-device tests.
 
-The initial Linux validation passed 181 tests and Android release Lint. Named-device query results and their privilege limitations are recorded in [compatibility](docs/compatibility.md).
+Version 0.2.0 passed 197 Linux regression tests, Android release Lint and diagnostic Lint. The instrumentation flow also ran on two local physical devices; its success is separate from usable sensor geometry. Named-device query results and their privilege limitations are recorded in [compatibility](docs/compatibility.md).
 
 Apache-2.0. New providers and sanitized device evidence are welcome; see [CONTRIBUTING](CONTRIBUTING.md).

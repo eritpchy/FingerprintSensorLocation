@@ -111,4 +111,37 @@ public class FrameworkProviderTest {
             assertTrue(result.issues.stream().anyMatch(i->i.code==Resolution.Issue.Code.DISPLAY_CHANGED));
         } finally {Shadows.shadowOf(display).setRotation(initial);}
     }
+    @Test public void systemUiReportIsOptInAndReadFreshForEachQuery() {
+        Context base=RuntimeEnvironment.getApplication();
+        Context context=new ContextWrapper(base) {
+            @Override public Context createDisplayContext(Display display){return this;}
+            @Override public Object getSystemService(String name){return "fingerprint".equals(name)?new Manager():super.getSystemService(name);}
+        };
+        Display display=((DisplayManager)base.getSystemService(Context.DISPLAY_SERVICE)).getDisplay(0);
+        int[] reads={0};
+        FingerprintLocation.Options options=new FingerprintLocation.Options.Builder().properties(key->"")
+                .systemUiDump(()->{reads[0]++;throw new SecurityException();}).build();
+        assertNull(new FingerprintLocation.Options.Builder().build().systemUiDump);
+        for(int i=1;i<=2;i++) {
+            Resolution result=FingerprintLocation.query(context,display,options);
+            assertEquals(i,reads[0]);assertNull(result.bounds);
+            assertTrue(result.issues.stream().anyMatch(issue->issue.provider.equals("systemui-report")
+                    && issue.code==Resolution.Issue.Code.ACCESS_DENIED));
+        }
+    }
+    @Test public void ambiguousFrameworkSensorsDoNotUseADeviceWideSystemUiFallback() {
+        Legacy31 first=new Legacy31(),second=new Legacy31();second.sensorId=8;
+        first.sensorLocationX=second.sensorLocationX=20;
+        first.sensorLocationY=40;second.sensorLocationY=60;
+        first.sensorRadius=second.sensorRadius=5;
+        Context context=new ContextWrapper(RuntimeEnvironment.getApplication()) {
+            @Override public Context createDisplayContext(Display display){return this;}
+            @Override public Object getSystemService(String name){return "fingerprint".equals(name)?new Manager(first,second):super.getSystemService(name);}
+        };
+        Display display=((DisplayManager)context.getSystemService(Context.DISPLAY_SERVICE)).getDisplay(0);
+        int[] reads={0};
+        Resolution result=FingerprintLocation.query(context,display,new FingerprintLocation.Options.Builder().properties(key->"")
+                .systemUiDump(()->{reads[0]++;return "";}).build());
+        assertEquals(0,reads[0]);assertEquals(Resolution.Status.AMBIGUOUS,result.status);assertNull(result.bounds);
+    }
 }

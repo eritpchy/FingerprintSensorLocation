@@ -13,6 +13,7 @@ None of these labels implies that every firmware of a brand is covered.
 | Android 12 center/radius | Implemented | Hidden/system API access required; malformed and example-default coordinates are rejected |
 | Android 13+ location list | Implemented | Stable and vendor numeric display IDs; multiple sensors require selection |
 | Framework UDFPS resource overlay | Implemented | Default display only; exactly three integer values; resource may be absent |
+| AOSP SystemUI report | Opt-in caller bridge | Scoped AuthController and UdfpsController blocks, actual sensor ID, registered state and matching display configuration required; current-natural bounds; no automatic shell/root access |
 | OPlus icon properties | Implemented | Optical/ultrasonic type plus both size and center-bottom properties required; properties can be denied to ordinary apps |
 | Xiaomi legacy FOD properties | Implemented | Both Android 8 and Android 9+ property names; default display only |
 | Xiaomi/Samsung ROM AIDL properties | Implemented | Explicit sensor type or independently known type required; display association preserved |
@@ -52,6 +53,8 @@ The APK checks add ordinary application-process evidence for these two devices, 
 The same diagnostic APK was executed through Firebase Test Lab's free Spark allowance on 2026-10-25. Actual application logs confirmed `FOUND` on OnePlus 11 `CPH2449` (Android 14), `NOT_UNDER_DISPLAY`/`SIDE` on OPPO A79 `CPH2557` (Android 14), and `UNAVAILABLE` on Samsung S24 Ultra `SM-S928U1` (Android 16) and Pixel 11 (Android 17). Xiaomi 14's Android 15 firmware blocked the Robo stub's Activity launch, so the library was not exercised on that device. No independent hardware-position calibration was performed on cloud devices. Full evidence and the distinction between platform success and usable geometry are in [the E2E record](e2e.md).
 
 ## Geometry acceptance
+
+The 0.2.0 instrumentation run repeated the six query stages on both local physical devices. PKG110 retained its OPlus result; the SystemUI bridge correctly rejected the empty rectangle as `INVALID_DATA`. TB375FC supplied no supported SystemUI UDFPS report and remained `UNAVAILABLE`. These negative cases validate rejection and fallback behavior, not a positive physical-device SystemUI geometry path. Its landscape request changed rotation from 3 to 1, but the subsequent portrait request returned rotation 3 while retaining landscape dimensions; portrait coverage is not claimed. See the versioned [E2E record](e2e.md).
 
 - Coordinates must be finite, ordered and inside the selected display after transformation.
 - Side/rear/home sensors are classified before using geometry.

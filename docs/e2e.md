@@ -27,6 +27,23 @@ In the earlier command-line run, PKG110 root returned the OPlus bounds while ADB
 
 Raw screenshots, XML trees, app logs and JSON are archived locally under `.work/e2e/`, excluded from Git. Device addresses, account information, unrelated applications and restoration screenshots are not included in the public record.
 
+## Version 0.2.0 instrumentation run
+
+The app APK SHA-256 was `036dd61abcbb15b54b1caacfd1abc17e3cace3d826a610b6637ea0417d5ac799`. The runtime library/app code was unchanged during the following harness refinements. The final test APK SHA-256 was `23919a39c7c3788b6168b631ccde9768d90be281d06ffd30047df7102c4acd45`. It adds explicit foreground guards, records whether orientation requests were actually satisfied, and verifies restored bounds. Linux validation passed 163 core and 34 Android regression cases with no failures or skips, plus library release Lint, diagnostic Lint and both APK builds.
+
+| Device | App and initial harness | Final harness | SystemUI bridge outcome |
+| --- | --- | --- | --- |
+| OnePlus PKG110 | Six query stages and Close completed; portrait -> landscape -> portrait; OPlus bounds unchanged from the earlier run | A later rerun lost foreground during the landscape step and failed waiting for a fresh query. Operations on this phone stopped; the final guarded harness was not rerun there | Empty `udfpsBounds` rejected as `INVALID_DATA`; OPlus remained the selected source |
+| Lenovo TB375FC | Six query stages and Close completed; no geometry | Final guarded harness passed all six stages and Close. Landscape request satisfied at rotation 1; portrait request returned rotation 3 with landscape dimensions, explicitly recorded as unsatisfied | No supported UDFPS report; `UNAVAILABLE`, no invented bounds |
+
+The initial OnePlus harness APK hash was `5cd097ed83b848426cc4e8b7a7518b07380c0b3657d46e8fcd66407fb1f815fe`; it predates the final harness's foreground and orientation-result guards. Its app/library APK is the same hash above. The interrupted rerun is not counted as a pass and is preserved separately in the evidence. No claim is made about why another application became foreground, and no action was sent to that application.
+
+The report reader ran only in the explicitly selected bridge stage, using a fixed, read-only `dumpsys -t 5 activity service com.android.systemui/.SystemUIService` command through instrumentation `UiAutomation`. Application queries retained their normal identity; no shell permissions were adopted for the query. That stage is labeled `app-with-instrumentation-shell-report`, not `ordinary-app`. The SDK itself does not execute commands. Neither device supplies a positive physical-device validation of the new SystemUI geometry path; positive transform cases are AOSP contract fixtures.
+
+Twelve sanitized query records, exact APK hashes and the interruption are in [instrumentation-0.2.0-20261025.json](evidence/instrumentation-0.2.0-20261025.json). Original numbered screenshots and failure evidence are retained privately under `.work/e2e/v0.2.0/`; unrelated applications and private system reports are excluded from public evidence. The final harness fails if the diagnostic loses focus before a control action or result screenshot. Exit screenshots are private restoration evidence.
+
+For cloud follow-up, Firebase supports an [instrumentation test using an app APK and a separate test APK](https://firebase.google.com/docs/test-lab/android/instrumentation-test). The self-launch harness avoids depending on Robo's separate crawler Activity launch, but Xiaomi's firmware still needs an actual rerun. The earlier five free physical executions were exhausted; no additional cloud execution or paid allocation was submitted for 0.2.0. Samsung, Pixel, Xiaomi and vivo therefore have no new 0.2.0 cloud result.
+
 ## Manufacturer services checked
 
 The direct manufacturer-console access checks below are separate from the completed Google-hosted physical-device run in the next section. A service page, device catalogue or login page is not a completed device test.

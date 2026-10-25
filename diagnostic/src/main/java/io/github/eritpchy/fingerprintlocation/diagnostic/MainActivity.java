@@ -37,9 +37,11 @@ public final class MainActivity extends Activity {
     private final ExecutorService worker = Executors.newSingleThreadExecutor();
     private final Handler main = new Handler(Looper.getMainLooper());
     private TextView report;
+    private TextView mode;
     private Region region;
     private int generation;
     private boolean ifaa;
+    private SystemUiDumpReader systemUiDump;
     private String json = "";
 
     @Override public void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public final class MainActivity extends Activity {
         });
         TextView title = new TextView(this);title.setText("Fingerprint Location Diagnostic");title.setTextSize(19);
         content.addView(title);
-        TextView mode = new TextView(this);
+        mode = new TextView(this);
         mode.setText("Ordinary app process - no root, no authentication, no network.\nRed outline = reported region, not independent proof of the sensor position.");
         content.addView(mode);
         LinearLayout controls = new LinearLayout(this);
@@ -95,7 +97,9 @@ public final class MainActivity extends Activity {
         parent.addView(button, new LinearLayout.LayoutParams(0, -2, 1));
     }
     private void query(boolean includeIfaa) {
+        if (isFinishing() || isDestroyed()) return;
         ifaa = includeIfaa;
+        SystemUiDumpReader reader = systemUiDump;
         int request = ++generation;
         Display display = getWindowManager().getDefaultDisplay();
         region.bounds = null;region.invalidate();report.setText("QUERYING - IFAA=" + includeIfaa);
@@ -104,10 +108,11 @@ public final class MainActivity extends Activity {
         }, 15000);
         worker.execute(() -> {
             try {
-                Resolution result = FingerprintLocation.query(this, display,
-                        new FingerprintLocation.Options.Builder().includeIfaa(includeIfaa).build());
+                FingerprintLocation.Options.Builder options = new FingerprintLocation.Options.Builder().includeIfaa(includeIfaa);
+                if (reader != null) options.systemUiDump(reader);
+                Resolution result = FingerprintLocation.query(this, display, options.build());
                 Geometry.DisplayFrame frame = FingerprintLocation.displayFrame(display);
-                String value = encode(result, frame, includeIfaa).toString(2);
+                String value = encode(result, frame, includeIfaa, reader != null).toString(2);
                 main.post(() -> {
                     if (request != generation || isFinishing()) return;
                     generation++;json = value;region.bounds = result.bounds;region.invalidate();report.setText(value);
@@ -123,12 +128,19 @@ public final class MainActivity extends Activity {
             }
         });
     }
-    private JSONObject encode(Resolution result, Geometry.DisplayFrame frame, boolean includeIfaa) throws Exception {
-        JSONObject value = new JSONObject().put("schema", 1).put("executionContext", "ordinary-app")
+    void useSystemUiDump(SystemUiDumpReader reader) {
+        systemUiDump = reader;
+        mode.setText(reader == null ? "Ordinary app process - no root, no authentication, no network."
+                : "App process with instrumentation-owned shell report - separate privilege context.");
+        query(false);
+    }
+    private JSONObject encode(Resolution result, Geometry.DisplayFrame frame, boolean includeIfaa, boolean bridge) throws Exception {
+        JSONObject value = new JSONObject().put("schema", 1).put("executionContext", bridge
+                ? "app-with-instrumentation-shell-report" : "ordinary-app")
                 .put("manufacturer", Build.MANUFACTURER).put("model", Build.MODEL)
                 .put("androidRelease", Build.VERSION.RELEASE).put("sdk", Build.VERSION.SDK_INT)
                 .put("captureElapsedRealtimeMs", android.os.SystemClock.elapsedRealtime())
-                .put("libraryVersion", "0.1.0").put("ifaa", includeIfaa).put("displayId", frame.displayId)
+                .put("libraryVersion", BuildConfig.VERSION_NAME).put("ifaa", includeIfaa).put("displayId", frame.displayId)
                 .put("width", frame.logicalWidth()).put("height", frame.logicalHeight())
                 .put("rotation", frame.rotation).put("status", result.status.name()).put("corroborated", result.corroborated);
         if (result.bounds != null) value.put("bounds", bounds(result.bounds)).put("source", result.selected.source.name());

@@ -14,6 +14,8 @@ Research date: 2026-10-25. The search covered GitHub repository/code search for 
 
 ## Contracts consulted
 
+- [AOSP Android 14 AuthController](https://github.com/aosp-mirror/platform_frameworks_base/blob/android14-release/packages/SystemUI/src/com/android/systemui/biometrics/AuthController.java) and [UdfpsController](https://github.com/aosp-mirror/platform_frameworks_base/blob/android14-release/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsController.java): dump field scopes, registration state, cached display information, already-scaled current-natural UDFPS rectangle and controller sensor ID/type. The opt-in report parser checks these fields together; generic fingerprint points and empty OEM rectangles cannot supply geometry. This is a format contract, not universal stock-SystemUI coverage.
+
 - [Android 12 sensor properties](https://android.googlesource.com/platform/frameworks/base/+/android-12.0.0_r1/core/java/android/hardware/fingerprint/FingerprintSensorPropertiesInternal.java): legacy center/radius fields.
 - [Android 13 sensor properties](https://android.googlesource.com/platform/frameworks/base/+/android-13.0.0_r1/core/java/android/hardware/fingerprint/FingerprintSensorPropertiesInternal.java): per-display location list, stable display identifiers and constructor placeholder.
 - [AOSP SensorLocation](https://android.googlesource.com/platform/hardware/interfaces/+/main/biometrics/fingerprint/aidl/android/hardware/biometrics/fingerprint/SensorLocation.aidl): display association, center/radius and sensor shape.

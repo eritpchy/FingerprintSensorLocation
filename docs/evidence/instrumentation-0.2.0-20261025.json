@@ -1,0 +1,634 @@
+{
+  "schema": 1,
+  "date": "2026-10-25",
+  "libraryVersion": "0.2.0",
+  "appApkSha256": "036dd61abcbb15b54b1caacfd1abc17e3cace3d826a610b6637ea0417d5ac799",
+  "regression": {
+    "coreTests": 163,
+    "androidTests": 34,
+    "failures": 0,
+    "skipped": 0
+  },
+  "limits": [
+    "Harness success is not a position-accuracy pass.",
+    "No authentication, enrollment, permission grant, hidden-API exemption or root invocation.",
+    "SystemUI report geometry was not positively validated on these physical devices.",
+    "Screenshots and raw system reports remain private local evidence."
+  ],
+  "devices": [
+    {
+      "model": "PKG110",
+      "harnessApkSha256": "5cd097ed83b848426cc4e8b7a7518b07380c0b3657d46e8fcd66407fb1f815fe",
+      "harnessStage": "Initial harness, before foreground guards",
+      "harnessResult": "OK (1 test)",
+      "closed": true,
+      "queries": [
+        {
+          "step": "01-default",
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "PKG110",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1264,
+          "height": 2780,
+          "rotation": 0,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            534.5,
+            2422.5,
+            729.5,
+            2617.5
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                534.5,
+                2422.5,
+                729.5,
+                2617.5
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "step": "02-landscape",
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "PKG110",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 2780,
+          "height": 1264,
+          "rotation": 1,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            2422.5,
+            534.5,
+            2617.5,
+            729.5
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                534.5,
+                2422.5,
+                729.5,
+                2617.5
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ],
+          "orientationRequestChangedRotation": true
+        },
+        {
+          "step": "03-portrait",
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "PKG110",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1264,
+          "height": 2780,
+          "rotation": 0,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            534.5,
+            2422.5,
+            729.5,
+            2617.5
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                534.5,
+                2422.5,
+                729.5,
+                2617.5
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ],
+          "orientationRequestChangedRotation": true
+        },
+        {
+          "step": "04-ifaa",
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "PKG110",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": true,
+          "displayId": 0,
+          "width": 1264,
+          "height": 2780,
+          "rotation": 0,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            534.5,
+            2422.5,
+            729.5,
+            2617.5
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                534.5,
+                2422.5,
+                729.5,
+                2617.5
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "ifaa",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "step": "05-systemui-bridge",
+          "schema": 1,
+          "executionContext": "app-with-instrumentation-shell-report",
+          "manufacturer": "OnePlus",
+          "model": "PKG110",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1264,
+          "height": 2780,
+          "rotation": 0,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            534.5,
+            2422.5,
+            729.5,
+            2617.5
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                534.5,
+                2422.5,
+                729.5,
+                2617.5
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "systemui-report",
+              "code": "INVALID_DATA"
+            }
+          ]
+        },
+        {
+          "step": "06-default-restored",
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "PKG110",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1264,
+          "height": 2780,
+          "rotation": 0,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            534.5,
+            2422.5,
+            729.5,
+            2617.5
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                534.5,
+                2422.5,
+                729.5,
+                2617.5
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "TB375FC",
+      "harnessApkSha256": "23919a39c7c3788b6168b631ccde9768d90be281d06ffd30047df7102c4acd45",
+      "harnessStage": "Final harness with foreground guards",
+      "harnessResult": "OK (1 test)",
+      "closed": true,
+      "queries": [
+        {
+          "step": "01-default",
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "LENOVO",
+          "model": "TB375FC",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 2944,
+          "height": 1840,
+          "rotation": 3,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "step": "02-landscape",
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "LENOVO",
+          "model": "TB375FC",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 2944,
+          "height": 1840,
+          "rotation": 1,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ],
+          "orientationRequestChangedRotation": true,
+          "orientationRequestSatisfied": true
+        },
+        {
+          "step": "03-portrait",
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "LENOVO",
+          "model": "TB375FC",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 2944,
+          "height": 1840,
+          "rotation": 3,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ],
+          "orientationRequestChangedRotation": true,
+          "orientationRequestSatisfied": false
+        },
+        {
+          "step": "04-ifaa",
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "LENOVO",
+          "model": "TB375FC",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": true,
+          "displayId": 0,
+          "width": 2944,
+          "height": 1840,
+          "rotation": 3,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "ifaa",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "step": "05-systemui-bridge",
+          "schema": 1,
+          "executionContext": "app-with-instrumentation-shell-report",
+          "manufacturer": "LENOVO",
+          "model": "TB375FC",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 2944,
+          "height": 1840,
+          "rotation": 3,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "systemui-report",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "step": "06-default-restored",
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "LENOVO",
+          "model": "TB375FC",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.2.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 2944,
+          "height": 1840,
+          "rotation": 3,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "interruptedRuns": [
+    {
+      "model": "PKG110",
+      "harnessApkSha256": "b8e87ba770447bf0e7107c0af0141232942088dee12211a6276beef5a7e57c7d",
+      "stage": "02-landscape",
+      "result": "No fresh query; another application was foreground",
+      "passed": false,
+      "action": "Stopped device operations; no final-harness rerun on this phone"
+    }
+  ]
+}

@@ -18,19 +18,23 @@ public final class FingerprintLocation {
         public final int sensorId;
         public final boolean includeIfaa;
         public final PropertyReader properties;
+        public final SystemUiDumpReader systemUiDump;
         public final List<Provider> providers;
         private Options(Builder builder) {
             sensorId = builder.sensorId; includeIfaa = builder.includeIfaa; properties = builder.properties;
+            systemUiDump = builder.systemUiDump;
             providers = Collections.unmodifiableList(new ArrayList<>(builder.providers));
         }
         public static final class Builder {
             private int sensorId = -1;
             private boolean includeIfaa;
             private PropertyReader properties = new AndroidProperties();
+            private SystemUiDumpReader systemUiDump;
             private final List<Provider> providers = new ArrayList<>();
             public Builder sensorId(int id) { if (id < -1) throw new IllegalArgumentException(); sensorId = id; return this; }
             public Builder includeIfaa(boolean value) { includeIfaa = value; return this; }
             public Builder properties(PropertyReader reader) { properties = java.util.Objects.requireNonNull(reader); return this; }
+            public Builder systemUiDump(SystemUiDumpReader reader) { systemUiDump = java.util.Objects.requireNonNull(reader); return this; }
             public Builder provider(Provider provider) { providers.add(java.util.Objects.requireNonNull(provider)); return this; }
             public Options build() { return new Options(this); }
         }
@@ -52,6 +56,7 @@ public final class FingerprintLocation {
             AndroidProviders.resources(scoped, frame, boundId, probe);
             AndroidProviders.oem(scoped, frame, boundId, probe);
             if (options.includeIfaa) AndroidProviders.ifaa(scoped, frame, boundId, probe);
+            if (options.systemUiDump != null) SystemUiReport.collect(options.systemUiDump, frame, probe);
         }
         for (Provider provider : options.providers) {
             try { provider.collect(scoped, frame, options.sensorId, probe); }

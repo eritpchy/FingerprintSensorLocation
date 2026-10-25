@@ -18,7 +18,7 @@ jobs:
       - name: Install compile SDK
         run: sdkmanager 'platforms;android-37.2' 'build-tools;37.0.0'
       - name: Test and build
-        run: ./gradlew :core:test :core:jar :android:testDebugUnitTest :android:assembleRelease :android:lintRelease :diagnostic:assembleDebug :diagnostic:lintDebug --console=plain
+        run: ./gradlew :core:test :core:jar :android:testDebugUnitTest :android:assembleRelease :android:lintRelease :diagnostic:assembleDebug :diagnostic:assembleDebugAndroidTest :diagnostic:lintDebug --console=plain
       - name: Build read-only diagnostic
         run: bash tools/build-probe.sh
       - uses: actions/upload-artifact@v4
@@ -26,8 +26,9 @@ jobs:
           name: fingerprint-location
           path: |
             android/build/outputs/aar/android-release.aar
-            core/build/libs/core-0.1.0.jar
+            core/build/libs/core-*.jar
             .work/probe/fingerprint-location-probe.jar
             diagnostic/build/outputs/apk/debug/diagnostic-debug.apk
+            diagnostic/build/outputs/apk/androidTest/debug/diagnostic-debug-androidTest.apk
             core/build/reports/tests/test/
             android/build/reports/tests/testDebugUnitTest/

@@ -6,7 +6,8 @@ sdk=${ANDROID_HOME:?Set ANDROID_HOME}
 out="$root/.work/probe"
 mkdir -p "$out/classes" "$out/dex"
 unzip -p "$root/android/build/outputs/aar/android-release.aar" classes.jar > "$out/android.jar"
-core="$root/core/build/libs/core-0.1.0.jar"
+version=$(sed -n 's/^libraryVersion=//p' "$root/gradle.properties")
+core="$root/core/build/libs/core-$version.jar"
 platform="$sdk/platforms/android-37.2/android.jar"
 javac -source 8 -target 8 -classpath "$platform:$core:$out/android.jar" -d "$out/classes" "$root/probe/src/main/java/io/github/eritpchy/fingerprintlocation/probe/Main.java"
 jar cf "$out/probe-classes.jar" -C "$out/classes" .

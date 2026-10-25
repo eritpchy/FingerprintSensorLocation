@@ -9,7 +9,7 @@ public final class Observation {
     public enum Source {
         ANDROID_PROPERTIES(90), SAMSUNG_API(100), VIVO_API(100), HUAWEI_API(100),
         OPLUS_PROPERTIES(80), XIAOMI_PROPERTIES(80), ROM_PROPERTIES(80), IFAA(70),
-        FRAMEWORK_RESOURCE(60), CALLER_PROVIDER(50);
+        FRAMEWORK_RESOURCE(60), SYSTEM_UI_DUMP(85), CALLER_PROVIDER(50);
         public final int priority;
         Source(int priority) { this.priority = priority; }
     }
