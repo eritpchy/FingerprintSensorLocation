@@ -6,7 +6,7 @@ This library queries geometry only. It does not authenticate, access enrolled fi
 
 **Status: 0.1.0, experimental.** Available mechanisms depend on the device, firmware and caller privileges. A successful source-code test is not a stock-device validation. No universal coverage claim is made.
 
-中文说明: 这是读取设备实际指纹位置的独立库，支持来源诊断、旋转和分辨率换算。已检查一加 PKG110 和联想 TB375FC；122 条 ROM 配置样本属于自动回归，不能视为 122 台真机验证。普通应用可能无法读取系统或厂商接口，失败时明确返回不可用，不猜测位置。
+中文说明: 这是读取设备实际指纹位置的独立库，支持来源诊断、旋转和分辨率换算。已检查两台本地设备，并在免费云真机上提交五个型号的测试，逐台记录可用、不可用及启动阻塞结果。122 条 ROM 配置样本属于自动回归，不能视为 122 台真机验证。普通应用可能无法读取系统或厂商接口，失败时明确返回不可用，不猜测位置。
 
 ## Existing work
 

@@ -1,0 +1,1020 @@
+{
+  "schema": 1,
+  "date": "2026-10-25",
+  "libraryVersion": "0.1.0",
+  "apkSha256": "6a4f7b1bc6e98a748ac4564b6afbc0e37d66b7e3ff58cca328f7f53bc1015db4",
+  "matrix": "matrix-mnrlak5nkrvta",
+  "service": "Firebase Test Lab, Spark, physical devices",
+  "locationAccuracyIndependentlyVerified": false,
+  "devices": [
+    {
+      "name": "OnePlus 11 5G",
+      "roboOutcome": "success",
+      "reports": [
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "CPH2449",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2412,
+          "rotation": 0,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            454.5,
+            1761.75,
+            625.5,
+            1932.75
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                606,
+                2349,
+                834,
+                2577
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "CPH2449",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 2412,
+          "height": 1080,
+          "rotation": 1,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            1761.75,
+            454.5,
+            1932.75,
+            625.5
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                606,
+                2349,
+                834,
+                2577
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "CPH2449",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2412,
+          "rotation": 0,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            454.5,
+            1761.75,
+            625.5,
+            1932.75
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                606,
+                2349,
+                834,
+                2577
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "CPH2449",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": true,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2412,
+          "rotation": 0,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            454.5,
+            1761.75,
+            625.5,
+            1932.75
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                606,
+                2349,
+                834,
+                2577
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "ifaa",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "CPH2449",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2412,
+          "rotation": 0,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            454.5,
+            1761.75,
+            625.5,
+            1932.75
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                606,
+                2349,
+                834,
+                2577
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OnePlus",
+          "model": "CPH2449",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2412,
+          "rotation": 0,
+          "status": "FOUND",
+          "corroborated": false,
+          "bounds": [
+            454.5,
+            1761.75,
+            625.5,
+            1932.75
+          ],
+          "source": "OPLUS_PROPERTIES",
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "OPTICAL",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL_AXES",
+              "evidence": "persist.vendor.fingerprint.optical.iconlocation+iconsize",
+              "frameworkPlaceholder": false,
+              "rawBounds": [
+                606,
+                2349,
+                834,
+                2577
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OPPO A79 5G",
+      "roboOutcome": "success",
+      "reports": [
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OPPO",
+          "model": "CPH2557",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2400,
+          "rotation": 0,
+          "status": "NOT_UNDER_DISPLAY",
+          "corroborated": false,
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "SIDE",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL",
+              "evidence": "OPLUS_PROPERTIES:type",
+              "frameworkPlaceholder": false
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OPPO",
+          "model": "CPH2557",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 2400,
+          "height": 1080,
+          "rotation": 1,
+          "status": "NOT_UNDER_DISPLAY",
+          "corroborated": false,
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "SIDE",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL",
+              "evidence": "OPLUS_PROPERTIES:type",
+              "frameworkPlaceholder": false
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OPPO",
+          "model": "CPH2557",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2400,
+          "rotation": 0,
+          "status": "NOT_UNDER_DISPLAY",
+          "corroborated": false,
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "SIDE",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL",
+              "evidence": "OPLUS_PROPERTIES:type",
+              "frameworkPlaceholder": false
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OPPO",
+          "model": "CPH2557",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": true,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2400,
+          "rotation": 0,
+          "status": "NOT_UNDER_DISPLAY",
+          "corroborated": false,
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "SIDE",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL",
+              "evidence": "OPLUS_PROPERTIES:type",
+              "frameworkPlaceholder": false
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "ifaa",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OPPO",
+          "model": "CPH2557",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2400,
+          "rotation": 0,
+          "status": "NOT_UNDER_DISPLAY",
+          "corroborated": false,
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "SIDE",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL",
+              "evidence": "OPLUS_PROPERTIES:type",
+              "frameworkPlaceholder": false
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "OPPO",
+          "model": "CPH2557",
+          "androidRelease": "14",
+          "sdk": 34,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2400,
+          "rotation": 0,
+          "status": "NOT_UNDER_DISPLAY",
+          "corroborated": false,
+          "observations": [
+            {
+              "source": "OPLUS_PROPERTIES",
+              "type": "SIDE",
+              "sensorId": -1,
+              "space": "NATIVE_NATURAL",
+              "evidence": "OPLUS_PROPERTIES:type",
+              "frameworkPlaceholder": false
+            }
+          ],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Samsung Galaxy S24 Ultra",
+      "roboOutcome": "success",
+      "reports": [
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "samsung",
+          "model": "SM-S928U1",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2340,
+          "rotation": 0,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "samsung",
+          "model": "SM-S928U1",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2340,
+          "rotation": 0,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "samsung",
+          "model": "SM-S928U1",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.1.0",
+          "ifaa": true,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2340,
+          "rotation": 0,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "ifaa",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "samsung",
+          "model": "SM-S928U1",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.1.0",
+          "ifaa": true,
+          "displayId": 0,
+          "width": 2340,
+          "height": 1080,
+          "rotation": 1,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "ifaa",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "samsung",
+          "model": "SM-S928U1",
+          "androidRelease": "16",
+          "sdk": 36,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 2340,
+          "height": 1080,
+          "rotation": 1,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Google Pixel 11",
+      "roboOutcome": "success",
+      "reports": [
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "Google",
+          "model": "Pixel 11",
+          "androidRelease": "17",
+          "sdk": 37,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2424,
+          "rotation": 0,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "Google",
+          "model": "Pixel 11",
+          "androidRelease": "17",
+          "sdk": 37,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2424,
+          "rotation": 0,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "Google",
+          "model": "Pixel 11",
+          "androidRelease": "17",
+          "sdk": 37,
+          "libraryVersion": "0.1.0",
+          "ifaa": true,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2424,
+          "rotation": 0,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "ifaa",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "Google",
+          "model": "Pixel 11",
+          "androidRelease": "17",
+          "sdk": 37,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 1080,
+          "height": 2424,
+          "rotation": 0,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "schema": 1,
+          "executionContext": "ordinary-app",
+          "manufacturer": "Google",
+          "model": "Pixel 11",
+          "androidRelease": "17",
+          "sdk": 37,
+          "libraryVersion": "0.1.0",
+          "ifaa": false,
+          "displayId": 0,
+          "width": 2424,
+          "height": 1080,
+          "rotation": 1,
+          "status": "UNAVAILABLE",
+          "corroborated": false,
+          "observations": [],
+          "issues": [
+            {
+              "provider": "android-properties",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "samsung-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "huawei-api",
+              "code": "UNAVAILABLE"
+            },
+            {
+              "provider": "vivo-api",
+              "code": "UNAVAILABLE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Xiaomi 14",
+      "model": "23127PN0CG",
+      "androidRelease": "15",
+      "sdk": 35,
+      "roboOutcome": "failure",
+      "reports": [],
+      "blocker": "HyperOS denied Activity launch from androidx.test.tools.crawler.stubapp; LaunchFailedException after approximately 45 seconds. No diagnostic query was observed."
+    }
+  ]
+}

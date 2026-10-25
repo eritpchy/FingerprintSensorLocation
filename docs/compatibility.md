@@ -47,6 +47,10 @@ On TB375FC, the framework supplied the side-sensor classification. This checks t
 
 The APK checks add ordinary application-process evidence for these two devices, but do not establish every display configuration, firmware version, or compatibility with other models. No authentication, enrollment or payment action was performed. APK orientation requests affected only the diagnostic activity. Raw device identifiers are excluded from the public record. See [the E2E record](e2e.md) for the exact tested APK hash, actual steps and manufacturer-cloud access blockers.
 
+## Cloud physical-device checks
+
+The same diagnostic APK was executed through Firebase Test Lab's free Spark allowance on 2026-10-25. Actual application logs confirmed `FOUND` on OnePlus 11 `CPH2449` (Android 14), `NOT_UNDER_DISPLAY`/`SIDE` on OPPO A79 `CPH2557` (Android 14), and `UNAVAILABLE` on Samsung S24 Ultra `SM-S928U1` (Android 16) and Pixel 11 (Android 17). Xiaomi 14's Android 15 firmware blocked the Robo stub's Activity launch, so the library was not exercised on that device. No independent hardware-position calibration was performed on cloud devices. Full evidence and the distinction between platform success and usable geometry are in [the E2E record](e2e.md).
+
 ## Geometry acceptance
 
 - Coordinates must be finite, ordered and inside the selected display after transformation.

@@ -29,7 +29,7 @@ Raw screenshots, XML trees, app logs and JSON are archived locally under `.work/
 
 ## Manufacturer services checked
 
-No manufacturer-cloud device result is claimed below. A service page, device catalogue or login page is not a completed device test.
+The direct manufacturer-console access checks below are separate from the completed Google-hosted physical-device run in the next section. A service page, device catalogue or login page is not a completed device test.
 
 | Manufacturer | Official service and verified capability | Access/result at this investigation |
 | --- | --- | --- |
@@ -41,6 +41,36 @@ No manufacturer-cloud device result is claimed below. A service page, device cat
 | Huawei | [Cloud debugging](https://developer.huawei.com/consumer/cn/agconnect/cloud-adjust): advertised 360 free daily minutes for HarmonyOS 5+ devices | The advertised free HarmonyOS 5+ allowance is not evidence that an Android APK can run there; an Android-compatible device/package path must be confirmed before counting coverage |
 
 Samsung's [official support response](https://forum.developer.samsung.com/t/detail?id=17054-Cannot-acess-samsung-wallet-on-Samsung-Remote-Test-Lab&postNo=134184) also documents remote-device restrictions on lock/biometric setup. These restrictions do not excuse skipping read-only geometry checks after device access becomes available, but prevent treating a cloud query as successful physical-finger authentication.
+
+## Completed Google-hosted physical-device run
+
+An existing Firebase Spark project was used without upgrading billing or enabling a paid trial. The console confirmed a daily physical-device quota of five executions. Matrix `matrix-mnrlak5nkrvta`, label `fpsloc-0.1.0-cloud-20261025`, used the exact APK hash above and selected five **physical** devices, one OS version per model, with a two-minute maximum per execution. All five executions completed. The platform reported four successful Robo executions and one failed execution; these are not five geometry-accuracy passes.
+
+The following results were extracted from the actual application-generated `FINGERPRINT_LOCATION_JSON` records in each execution's original logcat, rather than inferred from the Robo status:
+
+| Physical device | Android / API | Robo outcome | Actual application query | Observed scope |
+| --- | --- | --- | --- | --- |
+| OnePlus 11 5G, `CPH2449` | 14 / 34 | Success | `FOUND`, `OPLUS_PROPERTIES` | Portrait -> landscape -> portrait; original bounds restored; IFAA opt-in completed, but IFAA provider unavailable |
+| OPPO A79 5G, `CPH2557` | 14 / 34 | Success | `NOT_UNDER_DISPLAY`, OPlus `SIDE` report | Portrait -> landscape -> portrait; no UDFPS bounds generated; optional IFAA unavailable |
+| Samsung Galaxy S24 Ultra, `SM-S928U1` | 16 / 36 | Success | `UNAVAILABLE`, no bounds | Default and IFAA-opt-in queries; portrait and landscape results collected; no placement claim |
+| Google Pixel 11 | 17 / 37 | Success | `UNAVAILABLE`, no bounds | Default and IFAA-opt-in queries; portrait and landscape results collected; no placement claim |
+| Xiaomi 14, `23127PN0CG` | 15 / 35 | Failed | No application query record | HyperOS denied the Robo stub's Activity launch; crawler timed out before the diagnostic appeared |
+
+OnePlus 11 reported portrait bounds `[454.5,1761.75,625.5,1932.75]` on a 1080 x 2412 display, and landscape bounds `[1761.75,454.5,1932.75,625.5]` on a 2412 x 1080 display. Native reported bounds were `[606,2349,834,2577]`. Original diagnostic screenshots were exported for visual inspection. No independent SystemUI sensor bounds or visible authentication target were collected for this cloud device, so the result establishes a working property/transform path, not physical calibration.
+
+The Xiaomi log contained `MIUILOG- Permission Denied Activity` for a launch from `androidx.test.tools.crawler.stubapp`, followed by `LaunchFailedException` after approximately 45 seconds. Its only screenshot showed the harness's Device Details screen. The diagnostic never emitted its query JSON; this run cannot establish library compatibility or identify an application crash. No security setting was weakened to make the run pass.
+
+Cloud devices use the laboratory-provided firmware. A device marketing name or Android API level does not establish equivalence with a domestic retail ColorOS, OxygenOS, HyperOS or One UI build. Read-only geometry queries do not validate physical fingerprint matching. vivo was not selected in this five-device matrix. The five daily physical executions were used; no additional paid execution was requested.
+
+Sanitized application records are included in [cloud-20261025.json](evidence/cloud-20261025.json). Raw excerpts, original screenshots, matrix screenshots and execution identifiers are archived under `.work/e2e/cloud/` and `.work/e2e/`. Cloud Storage failed to load/export Samsung screenshots `0.png` and `1.png`; `2.png` was archived, so screenshot evidence for that execution is partial even though all five application query records were retrieved. Project/account identifiers, signed download URLs and unrelated device logs are excluded from the public evidence.
+
+## Community experience and alternative access
+
+A [first-hand V2EX comparison dated 2024-10-11](https://www.v2ex.com/t/1079145) describes manufacturer consoles and reports ADB/log access for Xiaomi and Samsung. It is historical experience, not proof of today's authentication rules, quotas, availability or device firmware. Links and present service capabilities must be checked against the official sites.
+
+The current [Android Device Streaming documentation](https://developer.android.com/studio/run/android-device-streaming) lists Android Partner Device Labs from Samsung, Xiaomi, OPPO, OnePlus, vivo and Transsion, and supports physical-device deployment, rotation and secure ADB. The [Android CLI](https://developer.android.com/tools/agents/android-cli/commands/device_remote) exposes project/model discovery and reservation commands. This offers a shared Google/Firebase route to partner laboratories instead of relying exclusively on separate OEM developer accounts; Google project access and any partner-lab enablement still need validation.
+
+The [official quota page](https://firebase.google.com/docs/test-lab/usage-quotas-pricing) distinguishes **five physical Test Lab executions per day** on Spark from **30 Device Streaming minutes per project per month**. These are different products and budgets. No Device Streaming reservation or partner-lab permission was enabled during this run. The console currently announces Test Lab retirement on 2027-09-30; future automation should consider the linked Developer Device Platform migration guidance.
 
 ## Next executable cloud cases
 
