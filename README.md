@@ -19,6 +19,7 @@ This library queries geometry only. It does not authenticate, access enrolled fi
 | `core` | Java 8 JAR | Immutable geometry, coordinate transforms, vendor parsers, conflict detection and diagnostics |
 | `android` | Android AAR, minSdk 23 | Fresh display capture, Android/OEM reflection, overlay resources and opt-in IFAA |
 | `probe` | app_process diagnostic | Read-only command-line use of the same library |
+| `diagnostic` | Debug APK | Ordinary-app query, reported-region outline, rotation controls and JSON export for physical/cloud devices |
 
 There are no runtime network calls, analytics, hard-coded model coordinates or authentication dependencies. The research corpus is test-only and is not packaged into the library.
 
@@ -119,6 +120,14 @@ adb shell 'CLASSPATH=/data/local/tmp/fingerprint-location-probe.jar app_process 
 Run under the host's existing privileged context only if it is already authorized. Compare the geometry with an independently read system sensor/icon region. The probe neither invokes `su` nor starts authentication. Its JSON contains display geometry and provider outcomes, never enrolled fingerprint data or payment credentials.
 
 Before sharing a diagnostic, inspect it for display identifiers. See [compatibility](docs/compatibility.md) for implemented mechanisms, evidence levels and open gaps.
+
+## Physical and manufacturer-cloud testing
+
+Build the ordinary-app diagnostic with `./gradlew :diagnostic:assembleDebug :diagnostic:lintDebug` on Linux, or download `diagnostic-debug.apk` from the CI artifact. This APK has no network permission, root invocation, hidden-API exemption or authentication flow. It queries automatically at launch; IFAA requires the separate `Query + IFAA` control. The red outline visualizes the library result and is not independent location evidence.
+
+Install the APK on an authorized device or upload it to a manufacturer's test console. Test the default query, landscape, return to portrait, opt-in IFAA, and Close. A platform can ignore orientation requests, especially on large screens; record the actual display dimensions and rotation rather than marking an ignored request passed. Copy JSON from the app or, where ADB/debuggable-app access is provided, export `adb shell run-as io.github.eritpchy.fingerprintlocation.diagnostic cat files/latest.json`.
+
+Record model, firmware, APK SHA-256, execution context, actual rotation, complete JSON, original screenshots and exit state. Compare successful geometry with an independent system sensor/icon report. Installation success, a provider returning unavailable, and a library-drawn rectangle are not a location-accuracy pass. See [E2E evidence and cloud access](docs/e2e.md).
 
 ## Tests and license
 

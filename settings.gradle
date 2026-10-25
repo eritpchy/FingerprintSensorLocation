@@ -4,4 +4,4 @@ dependencyResolutionManagement {
     repositories { google(); mavenCentral() }
 }
 rootProject.name = 'FingerprintSensorLocation'
-include ':core', ':android'
+include ':core', ':android', ':diagnostic'

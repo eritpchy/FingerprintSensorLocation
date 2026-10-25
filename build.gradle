@@ -1,4 +1,5 @@
 plugins { id 'com.android.library' version '9.4.1' apply false }
+plugins { id 'com.android.application' version '9.4.1' apply false }
 allprojects {
     group = 'io.github.eritpchy.fingerprintlocation'
     version = '0.1.0'

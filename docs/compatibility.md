@@ -37,13 +37,15 @@ Checked on 2026-10-25 with the library's own diagnostic:
 | --- | --- | --- | --- | --- |
 | OnePlus PKG110 | Android 16, ColorOS V16.1.0 | 1264 x 2780, rotation 0 | Existing root process | `FOUND`, `OPLUS_PROPERTIES`, `[534.5,2422.5,729.5,2617.5]` |
 | OnePlus PKG110 | Same firmware | Same display | ADB shell | `UNAVAILABLE`; required vendor values were not exposed |
+| OnePlus PKG110 | Same firmware | Portrait 1264 x 2780, rotation 0; landscape 2780 x 1264, rotation 1 | Diagnostic APK, ordinary app process | `FOUND`; default and IFAA-opt-in calls completed; portrait bounds restored after rotation; IFAA provider itself unavailable |
 | Lenovo TB375FC | Android 16, ZUI 17.5.10.044 | 2944 x 1840, rotation 3 | Existing root process and ADB shell | `NOT_UNDER_DISPLAY`, framework sensor 0 classified `SIDE` |
+| Lenovo TB375FC | Same firmware | Same display; portrait requests ignored by device | Diagnostic APK, ordinary app process | `UNAVAILABLE`, no bounds; hidden sensor classification unavailable from this context |
 
 On PKG110, the independently read WindowManager report identified a trusted `com.android.systemui` `OnScreenFingerprintPressedIcon` window on display 0, with retained frame `[534,2422][729,2617]`. Each library edge differs by 0.5 px, consistent with integer rounding; both regions are 195 x 195 px. This window was not visible during collection, so this verifies agreement with its retained layout, not a newly rendered authentication screen or the physical chip. The larger animation window was excluded. `corroborated` remained false because the library used only its property provider; this external comparison was performed by the investigator.
 
 On TB375FC, the framework supplied the side-sensor classification. This checks that the library rejects it as UDFPS; it does not establish a screen coordinate or independently measure the hardware.
 
-These command-line checks do not establish ordinary application-process access, every display configuration, every firmware version, or compatibility with other models. No authentication, enrollment, payment action or device-setting change was performed. Raw device identifiers are excluded from the public record.
+The APK checks add ordinary application-process evidence for these two devices, but do not establish every display configuration, firmware version, or compatibility with other models. No authentication, enrollment or payment action was performed. APK orientation requests affected only the diagnostic activity. Raw device identifiers are excluded from the public record. See [the E2E record](e2e.md) for the exact tested APK hash, actual steps and manufacturer-cloud access blockers.
 
 ## Geometry acceptance
 
