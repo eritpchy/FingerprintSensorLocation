@@ -1,0 +1,9 @@
+FingerprintSensorLocation
+Copyright 2026 FingerprintSensorLocation contributors
+
+This distribution includes the Gradle Wrapper, distributed under the Apache License 2.0.
+Original copyright and license notices are retained in the wrapper scripts.
+
+Research references and numeric configuration provenance are listed in docs/research.md
+and core/src/test/resources/device-profiles.tsv. No proprietary vendor implementation
+or authentication/template data is included.

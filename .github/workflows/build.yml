@@ -1,0 +1,29 @@
+name: Build and test
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - name: Install compile SDK
+        run: sdkmanager 'platforms;android-37.2' 'build-tools;37.0.0'
+      - name: Test and build
+        run: ./gradlew :core:test :core:jar :android:testDebugUnitTest :android:assembleRelease :android:lintRelease --console=plain
+      - name: Build read-only diagnostic
+        run: bash tools/build-probe.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fingerprint-location
+          path: |
+            android/build/outputs/aar/android-release.aar
+            core/build/libs/core-0.1.0.jar
+            .work/probe/fingerprint-location-probe.jar
+            core/build/reports/tests/test/
+            android/build/reports/tests/testDebugUnitTest/
