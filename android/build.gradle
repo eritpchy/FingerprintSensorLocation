@@ -1,6 +1,6 @@
 plugins { id 'com.android.library'; id 'maven-publish' }
 android {
-    namespace 'io.github.eritpchy.fingerprintlocation'
+    namespace 'com.surcumference.fingerprintlocation'
     compileSdk { version = release(37) { minorApiLevel = 2 } }
     buildToolsVersion '37.0.0'
     defaultConfig { minSdk 23; consumerProguardFiles 'consumer-rules.pro' }

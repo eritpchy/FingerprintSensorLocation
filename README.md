@@ -4,7 +4,7 @@ A dependency-free Android library for querying under-display fingerprint placeme
 
 This library queries geometry only. It does not authenticate, access enrolled fingerprints, request root, change hidden-API policy, move the system fingerprint icon or modify another application's UI.
 
-**Status: 0.2.0, experimental.** Available mechanisms depend on the device, firmware and caller privileges. A successful source-code test is not a stock-device validation. No universal coverage claim is made.
+**Status: 0.3.0, experimental.** Available mechanisms depend on the device, firmware and caller privileges. A successful source-code test is not a stock-device validation. No universal coverage claim is made.
 
 中文说明: 这是读取设备实际指纹位置的独立库，支持来源诊断、旋转和分辨率换算。已检查两台本地设备，并在免费云真机上提交五个型号的测试，逐台记录可用、不可用及启动阻塞结果。122 条 ROM 配置样本属于自动回归，不能视为 122 台真机验证。普通应用可能无法读取系统或厂商接口，失败时明确返回不可用，不猜测位置。
 
@@ -25,6 +25,8 @@ There are no runtime network calls, analytics, hard-coded model coordinates or a
 
 ## Use
 
+Version 0.3.0 moves the Java packages and Maven group to `com.surcumference.fingerprintlocation`. Update imports and dependency coordinates when upgrading. The diagnostic application ID is `com.surcumference.fingerprintlocation.diagnostic`, with test package `com.surcumference.fingerprintlocation.diagnostic.test`.
+
 Build on Linux with JDK 21 and Android SDK 37.2/build-tools 37.0.0. JDK 21 is needed by the Android 16 Robolectric fixtures:
 
 ```sh
@@ -35,7 +37,7 @@ Build on Linux with JDK 21 and Android SDK 37.2/build-tools 37.0.0. JDK 21 is ne
 After local publication, add `mavenLocal()` to the consuming build's repositories:
 
 ```groovy
-implementation 'io.github.eritpchy.fingerprintlocation:fingerprint-location-android:0.2.0'
+implementation 'com.surcumference.fingerprintlocation:fingerprint-location-android:0.3.0'
 ```
 
 This coordinate is for the local publication above. It is not a claim that an artifact is available on Maven Central. CI provides the AAR, core JAR and diagnostic JAR as build artifacts. An AAR used directly must be accompanied by the core JAR.
@@ -53,9 +55,9 @@ if (result.status == Resolution.Status.FOUND) {
 Imports:
 
 ```java
-import io.github.eritpchy.fingerprintlocation.FingerprintLocation;
-import io.github.eritpchy.fingerprintlocation.core.Geometry;
-import io.github.eritpchy.fingerprintlocation.core.Resolution;
+import com.surcumference.fingerprintlocation.FingerprintLocation;
+import com.surcumference.fingerprintlocation.core.Geometry;
+import com.surcumference.fingerprintlocation.core.Resolution;
 ```
 
 For a selected authentication sensor:
@@ -124,7 +126,7 @@ No result is cached by model name. Firmware, overlay, folding and resolution cha
 bash tools/build-probe.sh
 adb push .work/probe/fingerprint-location-probe.jar /data/local/tmp/fingerprint-location-probe.jar
 adb shell chmod 444 /data/local/tmp/fingerprint-location-probe.jar
-adb shell 'CLASSPATH=/data/local/tmp/fingerprint-location-probe.jar app_process /system/bin --nice-name=FingerprintLocation-probe io.github.eritpchy.fingerprintlocation.probe.Main'
+adb shell 'CLASSPATH=/data/local/tmp/fingerprint-location-probe.jar app_process /system/bin --nice-name=FingerprintLocation-probe com.surcumference.fingerprintlocation.probe.Main'
 ```
 
 Run under the host's existing privileged context only if it is already authorized. Compare the geometry with an independently read system sensor/icon region. The probe neither invokes `su` nor starts authentication. Its JSON contains display geometry and provider outcomes, never enrolled fingerprint data or payment credentials.
@@ -135,13 +137,13 @@ Before sharing a diagnostic, inspect it for display identifiers. See [compatibil
 
 Build the ordinary-app diagnostic with `./gradlew :diagnostic:assembleDebug :diagnostic:lintDebug` on Linux, or download `diagnostic-debug.apk` from the CI artifact. This APK has no network permission, root invocation, hidden-API exemption or authentication flow. It queries automatically at launch; IFAA requires the separate `Query + IFAA` control. The red outline visualizes the library result and is not independent location evidence.
 
-Install the APK on an authorized device or upload it to a manufacturer's test console. Test the default query, landscape, return to portrait, opt-in IFAA, and Close. A platform can ignore orientation requests, especially on large screens; record the actual display dimensions and rotation rather than marking an ignored request passed. Copy JSON from the app or, where ADB/debuggable-app access is provided, export `adb shell run-as io.github.eritpchy.fingerprintlocation.diagnostic cat files/latest.json`.
+Install the APK on an authorized device or upload it to a manufacturer's test console. Test the default query, landscape, return to portrait, opt-in IFAA, and Close. A platform can ignore orientation requests, especially on large screens; record the actual display dimensions and rotation rather than marking an ignored request passed. Copy JSON from the app or, where ADB/debuggable-app access is provided, export `adb shell run-as com.surcumference.fingerprintlocation.diagnostic cat files/latest.json`.
 
 For an explicit instrumentation run, build `:diagnostic:assembleDebugAndroidTest` on Linux and install both diagnostic APKs. Run:
 
 ```sh
-adb shell am instrument -w -e class io.github.eritpchy.fingerprintlocation.diagnostic.DiagnosticE2eTest \
-  io.github.eritpchy.fingerprintlocation.diagnostic.test/androidx.test.runner.AndroidJUnitRunner
+adb shell am instrument -w -e class com.surcumference.fingerprintlocation.diagnostic.DiagnosticE2eTest \
+  com.surcumference.fingerprintlocation.diagnostic.test/androidx.test.runner.AndroidJUnitRunner
 ```
 
 The test launches the Activity from its own instrumentation process, exercises the controls, and separately supplies a report read through the harness's `UiAutomation` shell. That step is labeled `app-with-instrumentation-shell-report`; it does not demonstrate ordinary-app access to SystemUI. JSON and original screenshots are saved under the app's external `files/e2e/` directory. No authentication, root invocation, permission grant or hidden-API exemption is used. Upload the app APK and test APK as an instrumentation test for cloud execution. This is a candidate route around a Robo stub launch restriction, not a claim that Xiaomi has passed.
@@ -152,6 +154,6 @@ Record model, firmware, APK SHA-256, execution context, actual rotation, complet
 
 The test corpus contains 122 public LineageOS device/platform location definitions. Parameterized tests exercise display selection, four rotations and three scales, including side-sensor rejection. Additional tests cover malformed values, access denial, source disagreement, unbound sensor IDs, AOSP placeholder handling and fresh property reads. Android provider fixtures run on Robolectric SDK 31 and 36 and exercise API 31 fields, per-display lists, rectangular sensors, Samsung logical bounds and reflective access denial. These are configuration/geometry regressions, not 122 physical-device tests.
 
-Version 0.2.0 passed 197 Linux regression tests, Android release Lint and diagnostic Lint. The instrumentation flow also ran on two local physical devices; its success is separate from usable sensor geometry. Named-device query results and their privilege limitations are recorded in [compatibility](docs/compatibility.md).
+Version 0.3.0 passed 197 Linux regression tests, Android release Lint and diagnostic Lint. Its migrated diagnostic/test packages passed instrumentation on TB375FC. Earlier versions also ran on PKG110; harness success is separate from usable sensor geometry. Named-device query results and their privilege limitations are recorded in [compatibility](docs/compatibility.md).
 
 Apache-2.0. New providers and sanitized device evidence are welcome; see [CONTRIBUTING](CONTRIBUTING.md).

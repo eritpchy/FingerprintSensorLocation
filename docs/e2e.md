@@ -2,11 +2,19 @@
 
 Last checked: 2026-10-25. Scope: this independent library and its diagnostic, not another application's payment or authentication flow.
 
+The 0.1.0 and 0.2.0 records below predate the package migration and used `io.github.eritpchy.fingerprintlocation.diagnostic`. From 0.3.0, use `com.surcumference.fingerprintlocation.diagnostic`; previous APK hashes and device results remain historical evidence for their original binaries.
+
 ## Acceptance and limits
 
 The test chain is Linux build -> APK installation -> ordinary-app launch -> fresh query -> actual display geometry -> rendered reported-region outline -> optional IFAA query -> diagnostic exit. Save original screenshots, JSON, launch/install output and app-only logs for each step. A successful query still needs independent system geometry evidence before claiming location agreement. Physical sensor operation requires separate authorized hardware testing and is not implied by a cloud session.
 
 The diagnostic never enrolls a fingerprint, sets a PIN, starts authentication, invokes root, bypasses hidden-API enforcement or contacts a payment backend. Do not change a manufacturer's device-lock or biometric policy to obtain a test result. Ordinary applications, ADB shell and existing root processes can have different access; they are separate cases.
+
+## Version 0.3.0 package migration
+
+The application ID is `com.surcumference.fingerprintlocation.diagnostic`, and the instrumentation target package matches it. Java packages, Maven group, consumer rules, probe entry point and usage commands use `com.surcumference.fingerprintlocation`. Built core/AAR classes and all three DEX outputs were checked for the new namespace and absence of the old class paths. The probe compiles in a version-specific directory to exclude stale classes after the rename.
+
+The migrated app APK SHA-256 was `815922aa36fbeef1834bc92ae2681815e75c6c8abd5e4d59adecb9ff325ec2aa`; the test APK SHA-256 was `28a8baaa8575abb674df95518ccf581f805bc04ab67a81d642311a444f4fcafc`. TB375FC completed all six query stages and Close with `OK (1 test)` using these packages. Its no-geometry result and unsatisfied portrait request remain explicit. Original screenshots and JSON are archived under `.work/e2e/v0.3.0/`. PKG110 was not operated for this migration run. Linux validation again passed 163 core and 34 Android regression cases plus both Lint tasks and all artifact builds.
 
 ## Completed physical-device run
 

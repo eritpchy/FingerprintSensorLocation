@@ -1,1 +1,1 @@
--keep class io.github.eritpchy.fingerprintlocation.** { public *; }
+-keep class com.surcumference.fingerprintlocation.** { public *; }
