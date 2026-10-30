@@ -8,6 +8,11 @@ on:
         description: 'Version in gradle.properties; leave empty to build only'
         required: false
         type: string
+      verify_only:
+        description: 'Verify an already published release without uploading it again'
+        required: false
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -52,7 +57,7 @@ jobs:
             core/build/reports/tests/test/
             android/build/reports/tests/testDebugUnitTest/
       - name: Publish to Maven Central
-        if: github.event_name == 'workflow_dispatch' && inputs.release_version != ''
+        if: github.event_name == 'workflow_dispatch' && inputs.release_version != '' && !inputs.verify_only
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
@@ -78,7 +83,7 @@ jobs:
                 sources*|javadoc*) URL="$BASE-$SUFFIX" ;;
                 *) URL="$BASE.$SUFFIX" ;;
               esac
-              curl --fail --silent --show-error --location --retry 40 --retry-delay 15 --retry-all-errors --output "$DEST/${URL##*/}" "$URL"
+              curl --fail --silent --show-error --location --retry 120 --retry-delay 15 --retry-all-errors --output "$DEST/${URL##*/}" "$URL"
             done
           done
           cmp android/build/outputs/aar/android-release.aar "$DEST/fingerprint-location-android-$VERSION.aar"
