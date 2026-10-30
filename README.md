@@ -214,7 +214,7 @@ Apache-2.0. New providers and sanitized device evidence are welcome; see [CONTRI
 
 The shared `gradle/maven-publishing.gradle` configures both modules under `net.xdow`, including Apache-2.0 licensing, developer/SCM metadata, source and Javadoc archives, and optional in-memory signing. `libraryVersion` remains the single version source. Build and publish only on Linux.
 
-GitHub Actions builds and tests on push and pull requests. Its manually requested release requires the exact `libraryVersion` on `codex/initial-library` and the repository secrets `MAVEN_CENTRAL_USERNAME`, `MAVEN_CENTRAL_PASSWORD`, `MAVEN_SIGNING_KEY`, and `MAVEN_SIGNING_PASSWORD`. It verifies both publicly downloaded artifacts against the built bytes. Secrets must be configured separately; signing credentials are not stored in this repository.
+GitHub Actions builds and tests on branch pushes and pull requests. To release, bump `libraryVersion` on `codex/initial-library`, push that commit, then push a matching `vX.Y.Z` tag pointing to it. The tag run validates the version and branch ancestry, signs and publishes both modules, and verifies their public artifacts against the built bytes. A manual release dispatch remains available for recovery; use `verify_only` to check an existing release without uploading again. The repository needs `MAVEN_CENTRAL_USERNAME`, `MAVEN_CENTRAL_PASSWORD`, `MAVEN_SIGNING_KEY`, and `MAVEN_SIGNING_PASSWORD` secrets. Signing credentials are not stored in this repository.
 
 ## Optional byte-bound stock firmware geometry
 
