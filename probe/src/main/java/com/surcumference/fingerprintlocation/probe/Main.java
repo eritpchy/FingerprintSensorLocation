@@ -35,6 +35,12 @@ public final class Main {
             JSONObject entry=new JSONObject().put("displayId",frame.displayId).put("width",frame.logicalWidth())
                     .put("height",frame.logicalHeight()).put("rotation",frame.rotation).put("status",result.status.name())
                     .put("corroborated",result.corroborated);
+            entry.put("sensorType", result.sensorType.name()).put("typeStatus", result.typeStatus.name());
+            JSONArray typeEvidence = new JSONArray();
+            for (Observation evidence : result.typeEvidence)
+                typeEvidence.put(new JSONObject().put("source", evidence.source.name()).put("type", evidence.type.name())
+                        .put("sensorId", evidence.sensorId).put("display", evidence.displayId).put("evidence", evidence.evidence));
+            entry.put("typeEvidence", typeEvidence);
             if(result.bounds!=null)entry.put("bounds",bounds(result.bounds)).put("source",result.selected.source.name());
             JSONArray observations=new JSONArray();
             for(Observation observation:result.observations) {
@@ -46,7 +52,7 @@ public final class Main {
                 observations.put(value);
             }
             JSONArray issues=new JSONArray();
-            for(Resolution.Issue issue:result.issues)issues.put(new JSONObject().put("provider",issue.provider).put("code",issue.code.name()));
+            for(Resolution.Issue issue:result.issues)issues.put(new JSONObject().put("provider",issue.provider).put("code",issue.code.name()).put("exceptionType",issue.exceptionType));
             entry.put("observations",observations).put("issues",issues);displays.put(entry);
         }
         System.out.println("FINGERPRINT_LOCATION_JSON="+new JSONObject().put("schema",1).put("displays",displays));

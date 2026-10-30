@@ -1,4 +1,4 @@
-plugins { id 'com.android.library'; id 'maven-publish' }
+plugins { id 'com.android.library'; id 'com.vanniktech.maven.publish' }
 android {
     namespace 'com.surcumference.fingerprintlocation'
     compileSdk { version = release(37) { minorApiLevel = 2 } }
@@ -8,7 +8,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    publishing { singleVariant('release') { withSourcesJar() } }
     testOptions {
         unitTests.includeAndroidResources = true
         unitTests.all { jvmArgs '--add-opens=java.base/jdk.internal.access=ALL-UNNAMED' }
@@ -19,9 +18,4 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.robolectric:robolectric:4.17'
 }
-afterEvaluate {
-    publishing { publications { library(MavenPublication) {
-        artifactId = 'fingerprint-location-android'
-        from components.release
-    } } }
-}
+apply from: rootProject.file('gradle/maven-publishing.gradle')

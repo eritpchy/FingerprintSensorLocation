@@ -9,6 +9,9 @@ public final class Probe {
     private final List<Resolution.Issue> issues = new ArrayList<>();
     public void add(Observation observation) { observations.add(java.util.Objects.requireNonNull(observation)); }
     public void issue(String provider, Resolution.Issue.Code code) { issues.add(new Resolution.Issue(provider, code)); }
+    public void issue(String provider, Resolution.Issue.Code code, Throwable error) {
+        issues.add(new Resolution.Issue(provider, code, error));
+    }
     public List<Observation> observations() { return Collections.unmodifiableList(observations); }
     public List<Resolution.Issue> issues() { return Collections.unmodifiableList(issues); }
     public Resolution resolve(Geometry.DisplayFrame display, int sensorId) {

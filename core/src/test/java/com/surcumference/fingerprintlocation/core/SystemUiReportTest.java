@@ -70,8 +70,17 @@ public class SystemUiReportTest {
         Probe probe=new Probe();SystemUiReport.collect(()->{throw new AssertionError("Must not read default-display report");},external,probe);
         assertNull(probe.resolve(external,-1).bounds);
     }
-    @Test public void ultrasonicClassificationAndWhitespaceArePreserved() {
+    @Test public void opticalClassificationAndWhitespaceArePreserved() {
         Resolution result=resolve(report(0).replace("Type: 2","Type: 3").replace("\n","\r\n"),frame(0),7);
-        assertEquals(Resolution.Status.FOUND,result.status);assertEquals(Observation.Type.ULTRASONIC,result.selected.type);
+        assertEquals(Resolution.Status.FOUND,result.status);assertEquals(Observation.Type.OPTICAL,result.selected.type);
+    }
+    @Test public void registeredSensorTypeSurvivesAnEmptyRectangle() {
+        Resolution r=resolve(report(0).replace("450, 1800 - 630, 1980","0, 0 - 0, 0"),frame(0),7);
+        assertEquals(Resolution.Status.UNAVAILABLE,r.status);assertNull(r.bounds);
+        assertEquals(Observation.Type.ULTRASONIC,r.sensorType);assertEquals(Resolution.TypeStatus.KNOWN,r.typeStatus);
+    }
+    @Test public void staleDisplayCannotSupplyTypeEvidence() {
+        Resolution r=resolve(report(0).replace("rotation 0","rotation 1"),frame(0),7);
+        assertEquals(Observation.Type.UNKNOWN,r.sensorType);assertTrue(r.typeEvidence.isEmpty());
     }
 }

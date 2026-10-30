@@ -1,0 +1,52 @@
+<resources>
+    <array name="sfps_default"><item>@array/sfps_default_entry</item></array>
+    <array name="sfps_default_entry">
+        <item>local:1</item>
+        <item>1080</item>
+        <item>1400</item>
+        <item>50</item>
+    </array>
+    <array name="sfps_external"><item>@array/sfps_external_entry</item></array>
+    <array name="sfps_external_entry">
+        <item>local:2</item>
+        <item>1080</item>
+        <item>1400</item>
+        <item>50</item>
+    </array>
+    <array name="sfps_short"><item>@array/sfps_short_entry</item></array>
+    <array name="sfps_short_entry">
+        <item></item>
+        <item>1080</item>
+        <item>1400</item>
+    </array>
+    <array name="sfps_string"><item>@array/sfps_string_entry</item></array>
+    <array name="sfps_string_entry">
+        <item></item>
+        <item>1080</item>
+        <item>invalid</item>
+        <item>50</item>
+    </array>
+    <array name="sfps_negative"><item>@array/sfps_negative_entry</item></array>
+    <array name="sfps_negative_entry">
+        <item></item>
+        <item>-1</item>
+        <item>1400</item>
+        <item>50</item>
+    </array>
+    <array name="sfps_zero"><item>@array/sfps_zero_entry</item></array>
+    <array name="sfps_zero_entry">
+        <item></item>
+        <item>1080</item>
+        <item>1400</item>
+        <item>0</item>
+    </array>
+    <array name="sfps_null"><item>@array/sfps_null_entry</item></array>
+    <array name="sfps_null_entry">
+        <item>@null</item>
+        <item>1080</item>
+        <item>1400</item>
+        <item>50</item>
+    </array>
+    <array name="sfps_mixed"><item>@array/sfps_default_entry</item><item>@array/sfps_short_entry</item></array>
+    <array name="sfps_mixed_reversed"><item>@array/sfps_short_entry</item><item>@array/sfps_default_entry</item></array>
+</resources>

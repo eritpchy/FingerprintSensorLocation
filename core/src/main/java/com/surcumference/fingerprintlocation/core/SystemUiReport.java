@@ -37,6 +37,12 @@ public final class SystemUiReport {
                     || Integer.parseInt(size.group(2)) != display.logicalHeight() || rotation != display.rotation) {
                 probe.issue(PROVIDER, DISPLAY_CHANGED);return;
             }
+            Matcher sensor = unique(field(udfps.get(0), "mSensorProps"),
+                    "^\\(ID:\\s*(\\d+),\\s*Strength:\\s*\\d+,\\s*Type:\\s*([23])\\)$");
+            int sensorId = Integer.parseInt(sensor.group(1));
+            Observation.Type type = Observation.Type.fromAndroid(Integer.parseInt(sensor.group(2)));
+            probe.add(new Observation(sensorId, "", type, Observation.Source.SYSTEM_UI_DUMP,
+                    Geometry.Space.CURRENT_NATURAL, null, "UdfpsController.mSensorProps"));
             double scale = Double.parseDouble(field(block, "mScaleFactor"));
             double expected = Math.min(display.naturalWidth / (double) display.nativeWidth,
                     display.naturalHeight / (double) display.nativeHeight);
@@ -47,11 +53,6 @@ public final class SystemUiReport {
             Matcher rect = unique(boundsValue, "^Rect\\((-?\\d+),\\s*(-?\\d+)\\s*-\\s*(-?\\d+),\\s*(-?\\d+)\\)$");
             Geometry.Bounds bounds = new Geometry.Bounds(Double.parseDouble(rect.group(1)), Double.parseDouble(rect.group(2)),
                     Double.parseDouble(rect.group(3)), Double.parseDouble(rect.group(4)));
-            // AOSP reports its default-display UDFPS controller's sensor ID separately.
-            Matcher sensor = unique(field(udfps.get(0), "mSensorProps"),
-                    "^\\(ID:\\s*(\\d+),\\s*Strength:\\s*\\d+,\\s*Type:\\s*([23])\\)$");
-            int sensorId = Integer.parseInt(sensor.group(1));
-            Observation.Type type = "2".equals(sensor.group(2)) ? Observation.Type.OPTICAL : Observation.Type.ULTRASONIC;
             display.toLogical(bounds, Geometry.Space.CURRENT_NATURAL);
             boolean placeholder = bounds.left == Math.round(410 * scale) && bounds.top == Math.round(1506 * scale)
                     && bounds.right == Math.round(670 * scale) && bounds.bottom == Math.round(1766 * scale);

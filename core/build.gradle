@@ -1,15 +1,8 @@
-plugins { id 'java-library'; id 'maven-publish' }
+plugins { id 'java-library'; id 'com.vanniktech.maven.publish' }
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
-    withSourcesJar()
-    withJavadocJar()
 }
 dependencies { testImplementation 'junit:junit:4.13.2' }
 test { maxParallelForks = 1 }
-publishing {
-    publications { library(MavenPublication) {
-        artifactId = 'fingerprint-location-core'
-        from components.java
-    } }
-}
+apply from: rootProject.file('gradle/maven-publishing.gradle')

@@ -1,0 +1,39 @@
+mavenPublishing {
+    coordinates('net.xdow', "fingerprint-location-${project.name}", project.version.toString())
+    publishToMavenCentral()
+    if (providers.gradleProperty('signingInMemoryKey').isPresent()) signAllPublications()
+    pom {
+        name = "FingerprintSensorLocation ${project.name}"
+        description = 'Read-only Android fingerprint sensor type and reported screen geometry with source diagnostics.'
+        url = 'https://github.com/eritpchy/FingerprintSensorLocation'
+        inceptionYear = '2026'
+        licenses {
+            license {
+                name = 'Apache License, Version 2.0'
+                url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution = 'repo'
+            }
+        }
+        developers {
+            developer {
+                id = 'eritpchy'
+                name = 'Jason'
+                url = 'https://github.com/eritpchy'
+            }
+        }
+        scm {
+            url = 'https://github.com/eritpchy/FingerprintSensorLocation'
+            connection = 'scm:git:https://github.com/eritpchy/FingerprintSensorLocation.git'
+            developerConnection = 'scm:git:ssh://git@github.com/eritpchy/FingerprintSensorLocation.git'
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = 'ReleaseBundle'
+            url = rootProject.layout.buildDirectory.dir('release-repository')
+        }
+    }
+}
